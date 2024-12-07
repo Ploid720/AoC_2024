@@ -24,6 +24,7 @@ fn solve_part_1(input: &String) -> i64
                 }
                 let next_vals: Vec<_> = curr_vals.iter()
                     .flat_map(|val| vec!(*val + num, *val * num))
+                    .filter(|val| val <= target)
                     .collect();
                 curr_vals.clear();
                 next_vals.iter().for_each(|val| {curr_vals.insert(*val);});
@@ -58,6 +59,7 @@ fn solve_part_2(input: &String) -> i64
                 }
                 let next_vals: Vec<_> = curr_vals.iter()
                     .flat_map(|val| vec!(*val + num, *val * num, *val * (10_i64.pow(num.checked_ilog10().unwrap_or(0) + 1)) + *num))
+                    .filter(|val| val <= target)
                     .collect();
                 curr_vals.clear();
                 next_vals.iter().for_each(|val| {curr_vals.insert(*val);});
