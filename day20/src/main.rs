@@ -190,9 +190,9 @@ fn solve_part_2(input: &String) -> usize
                 .iter()
                 .map(move |((x_off, y_off), dist)| ((x + *x_off, y + *y_off), dist))
                 .filter(move |(end, dist)| end_dist_ref.get(end)
-                    .map(|end_step| (end_step + start_step) < (best - *dist - (100-1)))
+                    .map(|end_step| (end_step + start_step) <= (best - *dist - 100))
                     .unwrap_or(false))
-                .map(|end| (*start, end));
+                .map(|(end, _)| (*start, end));
         })
         .collect::<HashSet<_>>()
         .len();
